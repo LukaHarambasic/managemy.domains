@@ -10,23 +10,27 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import { auth } from '@/assets/js/firebase'
 
 export default {
   name: 'ViewLogin',
   data () {
     return {
-      email: '',
-      password: ''
+      email: 'test-lh@test.com',
+      password: 'hallo1234'
     }
   },
   methods: {
+    ...mapActions({
+      setUser: 'setUser'
+    }),
     async login () {
       const user = await auth.signInWithEmailAndPassword(
         this.email,
         this.password
       )
-      console.log(user)
+      await this.setUser(user)
     }
   }
 }

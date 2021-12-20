@@ -12,13 +12,34 @@
     </main>
     <footer>
       ManageMy.Domains
+      <button type="submit" @click.prevent="logout" >Logout</button>
     </footer>
   </div>
 </template>
 
 <script>
+import { auth } from '@/assets/js/firebase'
+import { mapActions } from 'vuex'
+
 export default {
-  name: "Home"
+  mounted() {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        console.log('User is logged in!!!')
+      } else {
+        console.log('User is logged out.')
+      }
+    })
+  },
+  methods: {
+    ...mapActions({
+      removeUser: 'removeUser'
+    }),
+    async logout() {
+      await auth.signOut()
+      await this.removeUser()
+    }
+  }
 }
 </script>
 
