@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import firebase from 'firebase/app'
+import { auth } from '@/assets/js/firebase'
 
 export default {
   name: 'ViewLogin',
@@ -22,7 +22,7 @@ export default {
   },
   methods: {
     async login () {
-      const user = await firebase.auth.signInWithEmailAndPassword(
+      const user = await auth.signInWithEmailAndPassword(
         this.email,
         this.password
       )
