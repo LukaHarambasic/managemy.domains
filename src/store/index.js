@@ -4,12 +4,13 @@ import { SET_USER, REMOVE_USER } from './mutation-types'
 const store = createStore({
   state () {
     return {
-      user: null
+      user: null,
+      test: 2
     }
   },
   mutations: {
     [SET_USER] (state, payload) {
-      state.user = payload.user
+      state.user = payload
     },
     [REMOVE_USER] (state) {
       state.user = null

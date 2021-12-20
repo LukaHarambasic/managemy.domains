@@ -12,27 +12,33 @@
     </main>
     <footer>
       ManageMy.Domains
-      <button type="submit" @click.prevent="logout" >Logout</button>
+      <button v-if="user" type="submit" @click.prevent="logout">Logout</button>
     </footer>
   </div>
 </template>
 
 <script>
 import { auth } from '@/assets/js/firebase'
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 
 export default {
+  computed: {
+    ...mapState({
+      user: 'user',
+    })
+  },
   mounted() {
     auth.onAuthStateChanged((user) => {
       if (user) {
-        console.log('User is logged in!!!')
+        this.setUser(user)
       } else {
-        console.log('User is logged out.')
+        this.removeUser()
       }
     })
   },
   methods: {
     ...mapActions({
+      setUser: 'setUser',
       removeUser: 'removeUser'
     }),
     async logout() {

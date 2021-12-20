@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import store from '@/store'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -26,7 +27,13 @@ router.beforeEach((to, from, next) => {
     next()
     return
   }
-  console.log('default -> protected')
+  // If users are logged in they can see all pages
+  // if not they are redirected to login
+  if (store.state.user) {
+    next()
+  } else {
+    next('/login')
+  }
 })
 
 export default router
