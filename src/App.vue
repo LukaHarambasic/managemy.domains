@@ -1,18 +1,36 @@
 <template>
   <div class="container">
-    <nav>
-      <ul>
-        <li><router-link to="/">Home</router-link></li>
-        <li><router-link to="/overview">Overview</router-link></li>
-        <li><router-link to="/login">Login</router-link></li>
-      </ul>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item is-size-4 has-text-weight-bold" href="/">
+          ManageMy.Domains
+        </a>
+      </div>
+      <div class="navbar-menu">
+        <div class="navbar-start">
+        </div>
+        <div class="navbar-end">
+          <div v-if="user" class="navbar-item">
+            <router-link class="button is-primary" to="/overview">Overview</router-link>
+          </div>
+          <div v-else class="navbar-item">
+            <router-link class="button is-primary" to="/login">Login</router-link>
+          </div>
+        </div>
+      </div>
     </nav>
     <main>
       <router-view />
     </main>
-    <footer>
-      ManageMy.Domains
-      <button v-if="user" type="submit" @click.prevent="logout">Logout</button>
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>
+          ManageMy.Domains
+        </p>
+        <p>
+          <button v-if="user" class="button is-small" type="submit" @click.prevent="logout">Logout</button>
+        </p>
+      </div>
     </footer>
   </div>
 </template>
@@ -50,5 +68,8 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-
+nav
+  margin: 0 0 4rem 0
+main
+  margin: 0 0 4rem 0
 </style>

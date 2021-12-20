@@ -1,12 +1,14 @@
 <template>
   <div class="view">
-    <h2>Overview</h2>
+    <domain-create />
   </div>
 </template>
 
 <script>
+import DomainCreate from '@/components/Domain/DomainCreate.vue'
 export default {
-  name: 'ViewOverview'
+  name: 'ViewOverview',
+  components: { DomainCreate }
 }
 </script>
 
