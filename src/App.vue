@@ -7,8 +7,6 @@
         </a>
       </div>
       <div class="navbar-menu">
-        <div class="navbar-start">
-        </div>
         <div class="navbar-end">
           <div v-if="user" class="navbar-item">
             <router-link class="button is-primary" to="/overview">Overview</router-link>

@@ -72,6 +72,7 @@
 
 <script>import firebase from 'firebase/app'
 import { db } from '@/assets/js/firebase'
+import { mapState } from 'vuex'
 
 export default {
   name: 'DomainCreate',
@@ -84,22 +85,23 @@ export default {
       settingsLink: 'https://www.customercontrolpanel.de/domains.php'
     }
   },
+  computed: {
+    ...mapState({
+      user: 'user',
+    })
+  },
   methods: {
     async create() {
       console.log('CREATE')
-      console.log(db)
-        await db.collection('domains').add({
-          url: this.url,
-          contractUntil: firebase.firestore.Timestamp.fromDate(new Date(this.contractUntil)),
-          pricePerYear: this.pricePerYear,
-          vendor: this.vendor,
-          settingsLink: this.settingsLink
-        }).then((docRef) => {
-          console.log('Document written with ID: ', docRef.id)
-        })
-          .catch((error) => {
-            console.error('Error adding document: ', error)
-          })
+      console.log('TODO: try catch & error handling')
+      await db.collection('domains').add({
+        url: this.url,
+        contractUntil: firebase.firestore.Timestamp.fromDate(new Date(this.contractUntil)),
+        pricePerYear: this.pricePerYear,
+        vendor: this.vendor,
+        settingsLink: this.settingsLink,
+        uid: this.user.uid
+      })
     }
   }
 }

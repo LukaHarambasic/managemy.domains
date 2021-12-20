@@ -23,15 +23,14 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   // noAuth as it reduces boilerplate and sets default to guarded routes
-  if(to.meta.noAuth && to.meta.noAuth === true) {
-    next()
-    return
-  }
-  // If users are logged in they can see all pages
-  // if not they are redirected to login
-  if (store.state.user) {
+  const loggedIn = store.state.user
+  console.log(loggedIn)
+  const noAuthAndLoggedOut = to.meta.noAuth && to.meta.noAuth === true && !loggedIn
+  if(loggedIn || noAuthAndLoggedOut) {
+    console.log('loggedIn or no authandloggedout')
     next()
   } else {
+    console.log('auth and logged out')
     next('/login')
   }
 })
