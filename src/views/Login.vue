@@ -1,0 +1,15 @@
+<template>
+  <div class="view">
+    <h2>login</h2>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "Login"
+}
+</script>
+
+<style lang="sass" scoped>
+
+</style>

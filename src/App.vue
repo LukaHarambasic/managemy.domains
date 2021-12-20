@@ -1,23 +1,27 @@
-<script setup>
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-import HelloWorld from './components/HelloWorld.vue'
-
-console.log(import.meta.env.VITE_API_KEY)
-</script>
-
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + Vite" />
+  <div class="container">
+    <nav>
+      <ul>
+        <li><router-link to="/">Home</router-link></li>
+        <li><router-link to="/overview">Overview</router-link></li>
+        <li><router-link to="/login">Login</router-link></li>
+      </ul>
+    </nav>
+    <main>
+      <router-view />
+    </main>
+    <footer>
+      ManageMy.Domains
+    </footer>
+  </div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<script>
+export default {
+  name: "Home"
 }
+</script>
+
+<style lang="sass" scoped>
+
 </style>
